@@ -1,0 +1,62 @@
+[
+    {
+        "src": "./dist/assets/images/dinos/allosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/ankylosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/brachiosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/brontosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/ceratosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/diplodocus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/guanlong.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/iguanodon.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/kentrosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/lambeosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/ouranosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/oviraptor.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/parasaurolophus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/plateosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/spinosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/stegosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/styracosaurus.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/triceratops.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/tyrannosaurus-rex.svg"
+    },
+    {
+        "src": "./dist/assets/images/dinos/velociraptor.svg"
+    }   
+]

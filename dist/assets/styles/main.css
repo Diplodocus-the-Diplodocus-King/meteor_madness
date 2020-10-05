@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  position: relative;
+}
+
+.background-img {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.laser-cannon {
+  position: absolute;
+  bottom: 0;
+  width: 13%;
+  height: 13%;
+  transform-origin: center;
+  z-index: 2;
+}
+
+.dino {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 10%;
+}
+
+.laser {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 40px;
+  transform-origin: center bottom;
+  z-index: 1;
+}
+
+.meteor {
+  position: absolute;
+  height: 7.5%;
+  width: 7.5%;
+  z-index: 2;
+}
+
+.powerup{
+    position: absolute;
+    height: 7.5%;
+    width: 7.5%;
+    z-index: 2;
+}
+
+
+/*# sourceMappingURL=main.css.map */
