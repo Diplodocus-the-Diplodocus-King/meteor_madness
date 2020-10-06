@@ -7,13 +7,18 @@ player.init();
 const wave = new Wave();
 wave.init();
 
+// grab score element
+const scoreBoard = document.querySelector('.score');
+let score = 0;
+scoreBoard.innerText = `SCORE: ${score}`;
+
 // play background music
-const backgroundAudio = document.createElement('audio');
-backgroundAudio.src = './dist/assets/sounds/music_background.mp3';
-backgroundAudio.setAttribute("preload", "auto");
-backgroundAudio.setAttribute("controls", "none");
-backgroundAudio.style.display = "none";
-document.querySelector('.game-area').appendChild(backgroundAudio);
+// const backgroundAudio = document.createElement('audio');
+// backgroundAudio.src = './dist/assets/sounds/music_background.mp3';
+// backgroundAudio.setAttribute("preload", "auto");
+// backgroundAudio.setAttribute("controls", "none");
+// backgroundAudio.style.display = "none";
+// document.querySelector('.game-area').appendChild(backgroundAudio);
 // backgroundAudio.loop = true;
 // backgroundAudio.play();
 
@@ -200,6 +205,17 @@ const collisionInterval = setInterval(() => {
                 meteor.damageTaken = player.damage;
                 meteor.hit = true;
                 laser.hit = true;
+                
+
+                // calculate score
+                console.log(meteor.hitPoints);
+                if (meteor.hitPoints >= player.damage){
+                    score += player.damage*10;
+                } else {
+                    score += (player.damage - meteor.hitPoints)*10;
+                }
+
+                scoreBoard.innerText = `SCORE: ${score}`;
                 // meteorElement.src = './dist/assets/images/meteors/explosion.gif';
             } else if (laserBoundingBox.top < 0 || laserBoundingBox.right < 0 || laserBoundingBox.left > window.innerWidth){
                 // delete laser if out of bounds

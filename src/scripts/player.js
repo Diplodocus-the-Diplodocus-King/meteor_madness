@@ -51,20 +51,42 @@ class Player{
                 // the matrix value we want is the 2nd which represents the skewY() - note for simple 2d rotation skewY() = -skewX() (3rd matrix pos)
                 const rotation = Math.asin(matrixArray[1]);
                 // const rotation = this.cannon.style.transform;
+                
+                // wrap in if for 3 shot
+                if (this.shots > 1){
+                    // run 3 shot code
+                    const shotArray = [-0.35, 0, 0.35];
 
-                // grab laser array current length before creating a new element
-                const laserArraySize = this.laserArray.length;
+                    for(let i = 0; i<3; i++){
+                        // grab laser array current length before creating a new element
+                        const laserArraySize = this.laserArray.length;
 
-                // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
-                this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, rotation));
-                this.laserArray[laserArraySize].init();
+                        // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
+                        this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, (rotation + shotArray[i]), this.damage));
+                        this.laserArray[laserArraySize].init();
 
-                // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
-                if(this.laserCounter >= 99){
-                    this.laserCounter = 0;
+                        // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
+                        if(this.laserCounter >= 999){
+                            this.laserCounter = 0;
+                        } else {
+                            this.laserCounter ++;
+                        }
+                    }
                 } else {
-                    this.laserCounter ++;
-                }
+                    // grab laser array current length before creating a new element
+                    const laserArraySize = this.laserArray.length;
+
+                    // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
+                    this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, rotation, this.damage));
+                    this.laserArray[laserArraySize].init();
+
+                    // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
+                    if(this.laserCounter >= 999){
+                        this.laserCounter = 0;
+                    } else {
+                        this.laserCounter ++;
+                    }
+                }                
 
                 setTimeout(() => {
                     this.gunReloaded = !this.gunReloaded;

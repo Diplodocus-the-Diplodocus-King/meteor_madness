@@ -21,6 +21,18 @@ main {
   z-index: -1;
 }
 
+.score{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10%;
+  color: whitesmoke;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.5rem;
+  z-index: 0;
+}
+
 .laser-cannon {
   position: absolute;
   bottom: 0;

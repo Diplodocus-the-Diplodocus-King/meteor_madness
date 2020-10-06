@@ -1,5 +1,5 @@
 class Laser {
-    constructor(idNumber, xPosition, yPosition, rotation){
+    constructor(idNumber, xPosition, yPosition, rotation, damage){
         this.laserId = `laser-${idNumber}`;
         this.gameArea = document.querySelector('.game-area');
         this.xPosition = xPosition;
@@ -7,6 +7,7 @@ class Laser {
         this.rotation = rotation;
         this.velocity = 3;
         this.hit = false;
+        this.damage = damage;
     }
     init(){
         // create the laser element
@@ -24,7 +25,14 @@ class Laser {
 
         // create sound for meteor
         const sound = document.createElement("audio");
-        sound.src = './dist/assets/sounds/weapon_player.mp3';
+
+        // play different sound for double damage
+        if(this.damage > 1){
+            sound.src = './dist/assets/sounds/weapon_dd.mp3';
+        } else {
+            sound.src = './dist/assets/sounds/weapon_player.mp3';
+        }
+        
         sound.setAttribute("preload", "auto");
         sound.setAttribute("controls", "none");
         sound.style.display = "none";
