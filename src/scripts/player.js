@@ -16,6 +16,8 @@ class Player{
         this.shots = 1;
         this.gunReloaded = true;
         this.powerupOn = false;
+        this.rotateCannonHandler = this.rotateCannon.bind(this);
+        this.cannonShootHandler = this.cannonShoot.bind(this);
     }
     init(){
 
@@ -30,70 +32,11 @@ class Player{
         }
 
         // create event listener for cannon movement
-        window.addEventListener('mousemove', e => {
-            this.rotateCannon(e);            
-        });
+        window.addEventListener('mousemove', this.rotateCannonHandler);
 
         // create event listener for fire
-        window.addEventListener('click', () => {
-            // if check is for fire rate see setTimeout below
-            if(this.gunReloaded){
+        window.addEventListener('click', this.cannonShootHandler);
 
-                this.gunReloaded = !this.gunReloaded;
-                // grab cannon position
-                const xPosition = (window.innerWidth/2);
-                const yPosition = this.cannon.height/2;
-
-                // rotation is an absolute pain in the arse here...
-                // first we need to grab the computed style rather than just the style string and the calculate the rotation from one of the matrix values given
-                const transformMatrix = window.getComputedStyle(this.cannon, null).getPropertyValue('transform');
-                const matrixArray = transformMatrix.slice(transformMatrix.indexOf('(')+1, transformMatrix.indexOf(')')).split(', ');
-                // the matrix value we want is the 2nd which represents the skewY() - note for simple 2d rotation skewY() = -skewX() (3rd matrix pos)
-                const rotation = Math.asin(matrixArray[1]);
-                // const rotation = this.cannon.style.transform;
-                
-                // wrap in if for 3 shot
-                if (this.shots > 1){
-                    // run 3 shot code
-                    const shotArray = [-0.35, 0, 0.35];
-
-                    for(let i = 0; i<3; i++){
-                        // grab laser array current length before creating a new element
-                        const laserArraySize = this.laserArray.length;
-
-                        // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
-                        this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, (rotation + shotArray[i]), this.damage));
-                        this.laserArray[laserArraySize].init();
-
-                        // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
-                        if(this.laserCounter >= 999){
-                            this.laserCounter = 0;
-                        } else {
-                            this.laserCounter ++;
-                        }
-                    }
-                } else {
-                    // grab laser array current length before creating a new element
-                    const laserArraySize = this.laserArray.length;
-
-                    // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
-                    this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, rotation, this.damage));
-                    this.laserArray[laserArraySize].init();
-
-                    // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
-                    if(this.laserCounter >= 999){
-                        this.laserCounter = 0;
-                    } else {
-                        this.laserCounter ++;
-                    }
-                }                
-
-                setTimeout(() => {
-                    this.gunReloaded = !this.gunReloaded;
-                }, this.firerate);
-            }
-
-        });
     }
     createDinos(){
         // grab json file this contains the source location for each dinosaur svg
@@ -134,6 +77,64 @@ class Player{
         
         this.cannon.style.transform = `rotate(${-rotation}rad)`;
     }
+    cannonShoot(){
+        // if check is for fire rate see setTimeout below
+        if(this.gunReloaded){
+
+            this.gunReloaded = !this.gunReloaded;
+            // grab cannon position
+            const xPosition = (window.innerWidth/2);
+            const yPosition = this.cannon.height/2;
+
+            // rotation is an absolute pain in the arse here...
+            // first we need to grab the computed style rather than just the style string and the calculate the rotation from one of the matrix values given
+            const transformMatrix = window.getComputedStyle(this.cannon, null).getPropertyValue('transform');
+            const matrixArray = transformMatrix.slice(transformMatrix.indexOf('(')+1, transformMatrix.indexOf(')')).split(', ');
+            // the matrix value we want is the 2nd which represents the skewY() - note for simple 2d rotation skewY() = -skewX() (3rd matrix pos)
+            const rotation = Math.asin(matrixArray[1]);
+            // const rotation = this.cannon.style.transform;
+            
+            // wrap in if for 3 shot
+            if (this.shots > 1){
+                // run 3 shot code
+                const shotArray = [-0.35, 0, 0.35];
+
+                for(let i = 0; i<3; i++){
+                    // grab laser array current length before creating a new element
+                    const laserArraySize = this.laserArray.length;
+
+                    // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
+                    this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, (rotation + shotArray[i]), this.damage));
+                    this.laserArray[laserArraySize].init();
+
+                    // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
+                    if(this.laserCounter >= 999){
+                        this.laserCounter = 0;
+                    } else {
+                        this.laserCounter ++;
+                    }
+                }
+            } else {
+                // grab laser array current length before creating a new element
+                const laserArraySize = this.laserArray.length;
+
+                // this.laserArray[laserArraySize] = new Laser(this.laserCounter, xPosition, yPosition, rotation);
+                this.laserArray.push(new Laser(this.laserCounter, xPosition, yPosition, rotation, this.damage));
+                this.laserArray[laserArraySize].init();
+
+                // add to laser counter (catch if going over 100, just to prevent number getting too large - this may change depening on number of lasers to be on screen)
+                if(this.laserCounter >= 999){
+                    this.laserCounter = 0;
+                } else {
+                    this.laserCounter ++;
+                }
+            }                
+
+            setTimeout(() => {
+                this.gunReloaded = !this.gunReloaded;
+            }, this.firerate);
+        }
+    }
     powerupActive(powerupType){
         // turn power up on
         this.powerupOn = true;
@@ -173,11 +174,19 @@ class Player{
         this.dinoArray = filteredArray;
     }
     updatePowerupArray(){
+
         const filteredArray = this.powerupArray.filter(powerup => {
             return document.getElementById(`${powerup.powerupId}`) !== null
         });
 
         this.powerupArray = filteredArray;
+    }
+    gameOver(){
+        // clear event listener for cannon movement
+        window.removeEventListener('mousemove', this.rotateCannonHandler);
+
+        // clear event listener for fire
+        window.removeEventListener('click', this.cannonShootHandler);
     }
 }
 

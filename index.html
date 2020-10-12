@@ -4,6 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <!-- custom styles -->
     <link rel="stylesheet" href="./dist/assets/styles/main.css">
 
@@ -11,12 +14,88 @@
 </head>
 <body>
     <main class="game-area">
+        <div class="start-modal">
+            <div class="modal-content">
+                <h1>Meteor Madness!</h1>
+                <h3>Prepare to defend the dinosaurs</h3>
+                <p>Save the dinosaurus from the incoming meteor bombardment...</p>
+                <p>Rotate the cannon by moving your mouse! </p>
+                <p>Left-click to fire lasers!</p>
+                <div class="powerup-container">
+                    <img src="./dist/assets/images/powerups/fire.svg" alt="">
+                    <img src="./dist/assets/images/powerups/energy.svg" alt="">
+                    <img src="./dist/assets/images/powerups/bullet.svg" alt="">
+                </div>
+                <p>Shoot the powerups to gain an advantage!</p>
+                <div class="meteor-container">
+                    <img src="./dist/assets/images/meteors/meteor_basic.svg" alt="">
+                    <img src="./dist/assets/images/meteors/meteor_2.svg" alt="">
+                    <img src="./dist/assets/images/meteors/meteor_3.svg" alt="">
+                    <img src="./dist/assets/images/meteors/meteor_4.svg" alt="">
+                    <img src="./dist/assets/images/meteors/meteor_5.svg" alt="">
+                    <img src="./dist/assets/images/meteors/meteor_6.svg" alt="">
+                </div>
+                <p>Watch out some meteors are harder to destroy than others!</p>
+                <button class="play">PLAY!</button>
+            </div>
+        </div>
         <p class="score">
             SCORE:
         </p>
         <img src="./dist/assets/images/background_1.jpg" alt="" class="background-img">
         <img src="./dist/assets/images/laser-cannon_1.svg" alt="" class="laser-cannon">
+        <div class="end-modal">
+            <div class="modal-content">
+                <h1>Game Over!</h1>
+                <h3 class="final-score">Score: xxx</h3>
+                <form class="highscore-form">
+                    <input type="text" name="name" id="name" class="highscore-name" placeholder="Enter your name..." maxlength="25">
+                    <button class="score-submit" type="submit" value="Send">Submit!</button>
+                </form>
+                <p>High scores: </p>
+                <div class="highscore-container">
+                    <!-- high scores inserted here -->
+                </div>
+                <p>Special thanks:</p>
+                <p>Dinosaurs & Power-ups by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a></p>
+                <p>Background by <a href="https://www.wallpaperflare.com/pink-mountain-terrain-illustration-mountains-low-poly-minimalism-wallpaper-zfs">Wallpaperflare</a></p>
+                <p>
+                    Meteors by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a>, <a href="https://www.flaticon.com/authors/creaticca-creative-agency" title="Creaticca Creative Agency">Creaticca Creative Agency</a>, 
+                    <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
+                </p>
+                <p>Cannon by <a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a></p>
+                <!-- insert attributions -->
+                <button class="play">PLAY AGAIN!</button>
+            </div>
+        </div>
     </main>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyC5cTZLZFXdKUvEJQqg8XGi2eMmwtWM0c0",
+        authDomain: "diplodocus-website.firebaseapp.com",
+        databaseURL: "https://diplodocus-website.firebaseio.com",
+        projectId: "diplodocus-website",
+        storageBucket: "diplodocus-website.appspot.com",
+        messagingSenderId: "765860083038",
+        appId: "1:765860083038:web:9be08ce7a9ec9100930bcf",
+        measurementId: "G-LTYPM95RDY"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore();
+    </script>
+    
     <!-- custom script -->
     <script src="./dist/assets/bundle.js"></script>
 </body>

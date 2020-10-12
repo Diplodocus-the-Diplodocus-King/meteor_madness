@@ -14,6 +14,7 @@ class Wave {
         this.meteorMin = Math.round(this.waveSize*0.01);
         this.meteorVmax = 1;
         this.meteorVmin = 0.5;
+        this.gameover = false;
     }
     init(){
         this.waveGenerator();
@@ -28,6 +29,11 @@ class Wave {
         
     }
     waveGenerator(){
+
+        // catch if game over
+        if (this.gameover){
+            return;
+        }
 
         const intervalTime = Math.random()*(this.intervalMax - this.intervalMin) + this.intervalMin;
         const meteorAmount = Math.round(Math.random()*(this.meteorMax - this.meteorMin) +this.meteorMin); 
