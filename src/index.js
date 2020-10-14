@@ -57,41 +57,7 @@ play.forEach(button => {
                     player.updatePowerupArray();
                     wave.updateMeteorArray();
 
-                    // check lose condition - all dinos are dead
-                    // !player.dinoArray.length
-                    if(!player.dinoArray.length){
-
-                        // update final score
-                        highScore.printFinalScore(score);
-
-                        // display game over modal
-                        endModal.style.display = 'initial';
-
-                        // calls to remove event listeners on cannon
-                        player.gameOver();
-
-                        // stop wave loop
-                        wave.gameover = true;
-
-                        // clear meteor and powerup objects from game area
-                        wave.meteorArray.forEach(meteor => {
-                            const meteorElement = document.getElementById(`${meteor.meteorId}`);
-                            meteorElement.remove();
-                        });
-
-                        player.powerupArray.forEach(powerup => {
-                            const powerupElement = document.getElementById(`${this.powerupId}`);
-                            powerupElement.remove();
-                        });
-
-                        // finally clear arrays
-                        wave.updateMeteorArray();
-                        player.updatePowerupArray();
-
-                        // clear collision detection interval
-                        clearInterval(collisionInterval);
-                    }
-
+                    
                     // powerup check see if the updated meteor array contains 5 or more meteors if so lets give the player a power up
                     if (wave.meteorArray.length >= 4 && player.powerupArray.length < 1 && player.powerupOn === false){
                         player.createPowerup();
@@ -281,6 +247,42 @@ play.forEach(button => {
                             }
                         });
                     });
+
+                    // check lose condition - all dinos are dead
+                    player.updateDinoArray();
+                    // !player.dinoArray.length
+                    if(!player.dinoArray.length){
+
+                        // update final score
+                        highScore.printFinalScore(score);
+
+                        // display game over modal
+                        endModal.style.display = 'initial';
+
+                        // calls to remove event listeners on cannon
+                        player.gameOver();
+
+                        // stop wave loop
+                        wave.gameover = true;
+
+                        // clear meteor and powerup objects from game area
+                        wave.meteorArray.forEach(meteor => {
+                            const meteorElement = document.getElementById(`${meteor.meteorId}`);
+                            meteorElement.remove();
+                        });
+
+                        player.powerupArray.forEach(powerup => {
+                            const powerupElement = document.getElementById(`${powerup.powerupId}`);
+                            powerupElement.remove();
+                        });
+
+                        // finally clear arrays
+                        wave.updateMeteorArray();
+                        player.updatePowerupArray();
+
+                        // clear collision detection interval
+                        clearInterval(collisionInterval);
+                    }
                     
                 }, 10); // should be 10
             }
@@ -289,7 +291,7 @@ play.forEach(button => {
             // throwing it sometimes.
             setTimeout(() => {
                 collisionDetection();
-            }, 3000);   
+            }, 3500);   
 
         }, 500);
     });

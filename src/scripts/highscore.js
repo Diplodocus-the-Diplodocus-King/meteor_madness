@@ -49,7 +49,6 @@ class HighScore {
                         // update ranks for the remaining high scores
                         for(let i=index; i < this.highScores.length-1; i++){
                             playerRank++;
-                            console.log(playerRank, this.highScores[i].rank);
                             this.highScores[i].rank = playerRank;
                         }
                         break;
@@ -117,6 +116,12 @@ class HighScore {
                 return 0;
             }
         });
+
+        //catch if highscore list has 11 players in it
+        if(this.highScores.length > 10){
+            this.highScores.pop();
+        }
+        
         // populate highscore list
         this.highScoreContainer.innerHTML = ' ';
         this.highScores.forEach(player => {
