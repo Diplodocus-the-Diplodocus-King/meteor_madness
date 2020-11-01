@@ -26,7 +26,7 @@ main {
   position: absolute;
   top: 15px;
   left: 15px;
-  width: 20%;
+  width: 30%;
   color: #76ff03;
   font-weight: bold;
   font-size: 1.5rem;
@@ -185,4 +185,53 @@ main {
   padding: 5px;
 }
 
+@media screen and (max-width: 1170px){
+  .modal-content p{
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 975px){
+  .modal-content h1{
+    font-size: 2rem;
+  }
+  
+  .modal-content h3{
+    font-size: 1rem;
+  }
+  
+  .modal-content p{
+    font-size: 0.7rem;
+  }
+  
+  .play{
+    font-size: 1.2rem;
+  }
+
+  .score-submit{
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 575px){
+  .modal-content h1{
+    font-size: 1.7rem;
+  }
+  
+  .modal-content h3{
+    font-size: 0.8rem;
+  }
+  
+  .modal-content p{
+    font-size: 0.5rem;
+  }
+  
+  .play{
+    font-size: 1rem;
+  }
+
+  .score-submit{
+    font-size: 1rem;
+  }
+}
 /*# sourceMappingURL=main.css.map */
