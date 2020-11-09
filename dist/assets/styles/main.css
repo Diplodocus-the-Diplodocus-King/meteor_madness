@@ -78,9 +78,9 @@ main {
   position: absolute;
   z-index: 3;
   left: 15%;
-  top: 15%;
+  top: 5%;
   width: 70%;
-  height: 70%;
+  height: auto;
   padding: 20px;
   background: #76ff03;
   border-radius: 15px;
@@ -92,9 +92,9 @@ main {
   position: absolute;
   z-index: 3;
   left: 15%;
-  top: 15%;
+  top: 5%;
   width: 70%;
-  height: 70%;
+  height: auto;
   padding: 20px;
   background: #76ff03;
   border-radius: 15px;
@@ -126,6 +126,7 @@ main {
 
 .play{
   color: #76ff03;
+  display: inline-block;
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -140,13 +141,13 @@ main {
 }
 
 .powerup-container img{
-  height: 7.5%;
+  height: 7.5vh;
   width: 7.5%;
   margin: 10px 0;
 }
 
 .meteor-container img{
-  height: 7.5%;
+  height: 7.5vh;
   width: 7.5%;
   margin: 10px 0;
 }
